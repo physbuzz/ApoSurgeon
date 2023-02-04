@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager instance { get; private set; }
+
+    public delegate void OnHumorBloodValueChanged(int value);
+    public OnHumorBloodValueChanged onHumorBloodValueChanged;
+    public Humor humor;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
 
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
+
+        humor = new Humor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("test update.");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space key was pressed.");
+            humor.Blood = 5;
+        }
     }
 }

@@ -16,11 +16,18 @@ public class HUDController : MonoBehaviour
 
         Blood = root.Q<ProgressBar>("BloodBar");
         Blood.value = 50;
+
+        GameManager.instance.onHumorBloodValueChanged += HandleHumorBloodValueChanged;
     }
 
     // Update is called once per frame
     void Update()
     {
         Blood.value += 1;
+    }
+
+    void HandleHumorBloodValueChanged(int value)
+    {
+        Blood.value = value;
     }
 }

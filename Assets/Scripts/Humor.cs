@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Humor : MonoBehaviour
 {
-
-    private float m_blood;
+    private int m_blood;
     private float m_yellowBile;
     private float m_blackBile;
     private float m_phlegm;
-    public float Blood
+    public int Blood
     {
         get { return m_blood; }
         set
         {
-            m_blood = value; 
+            m_blood = value;
+            GameManager.instance.onHumorBloodValueChanged(m_blood);
         }
     }
 
