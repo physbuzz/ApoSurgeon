@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="LeftPanel" style="height: 623px; left: 10px; width: 264px;">
+        <ui:ProgressBar title="Blood" name="BloodBar" style="flex-direction: row; left: auto; top: 10px; height: 24px; width: 122px; justify-content: space-between;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="BottomPanel" style="flex-grow: 1;" />
+</ui:UXML>
