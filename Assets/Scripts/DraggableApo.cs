@@ -7,57 +7,40 @@ using UnityEngine.UI;
 
 /* Code from https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.IDragHandler.html */
 [RequireComponent(typeof(Image))]
-public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DraggableApo : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool dragOnSurfaces = true;
 
     public Color hoverColor = new Color(1.0f,1.0f,0.0f);
     public Color draggingColor = new Color(0.1f,0.1f,0.1f,0.6f);
 
-    public enum ToolType { BONESAW, LEECHES, SCALPEL, MAGGOTS };
-    public ToolType toolType;
+    public enum ApoType { MERCURY, WINTERGREEN, NIGHTSHADE, MUMMY };
+    public ApoType apoType;
 
     private GameObject m_DraggingIcon;
     
     private RectTransform m_DraggingPlane;
     private bool m_isDragging=false;
 
-    public void DroppedOnJaw()
-    {
-        switch (toolType)
-        {
-            case ToolType.BONESAW:
-                Debug.Log("Bonesaw dropped on jaw");
-                break;
-            case ToolType.LEECHES:
-                Debug.Log("Leeches dropped on jaw");
-                break;
-            case ToolType.SCALPEL:
-                Debug.Log("Scalpel dropped on jaw");
-                break;
-            case ToolType.MAGGOTS:
-                Debug.Log("Maggots dropped on jaw");
-                break;
-        }
-    }
     public void DroppedOnFace()
     {
-        switch (toolType)
+        switch (apoType)
         {
-            case ToolType.BONESAW:
-                Debug.Log("Bonesaw dropped on face");
+            case ApoType.MERCURY:
+                Debug.Log("Mercury dropped on face");
                 break;
-            case ToolType.LEECHES:
-                Debug.Log("Leeches dropped on face");
+            case ApoType.WINTERGREEN:
+                Debug.Log("Wintergreen dropped on face");
                 break;
-            case ToolType.SCALPEL:
-                Debug.Log("Scalpel dropped on face");
+            case ApoType.NIGHTSHADE:
+                Debug.Log("Nightshade dropped on face");
                 break;
-            case ToolType.MAGGOTS:
-                Debug.Log("Maggots dropped on face");
+            case ApoType.MUMMY:
+                Debug.Log("Mummy dropped on face");
                 break;
         }
     }
+    
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -80,7 +63,9 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         var image = m_DraggingIcon.AddComponent<Image>();
 
         image.sprite = GetComponent<Image>().sprite;
-        image.SetNativeSize();
+        //image.SetNativeSize();
+        //TODO: right now the image aspect ratio is messed up on drag.
+        //Fix it here.
 
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
