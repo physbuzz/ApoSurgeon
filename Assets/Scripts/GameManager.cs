@@ -9,7 +9,7 @@ public enum FacePart
     None,
     ForeHead,
     Nose,
-    Mid,
+    Cheek,
     Jaw
 }
 
@@ -33,7 +33,7 @@ public enum ToolEffect
     Phlegm, 
     ForeHead,
     Nose,
-    Mid,
+    Cheek,
     Jaw,
     Num
 };
@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void OnToolDragReleased(ToolType toolType)
     {
+
+        Debug.Log(toolType.ToString() + " dropped on "+mouseHoveredFacePart.ToString());
         if (mouseHoveredFacePart == FacePart.None)
         {
             return;
@@ -128,7 +130,7 @@ public class GameManager : MonoBehaviour
                 case ToolEffect.Nose:
 
                     break;
-                case ToolEffect.Mid:
+                case ToolEffect.Cheek:
 
                     break;
                 case ToolEffect.Jaw:

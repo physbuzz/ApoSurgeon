@@ -5,22 +5,32 @@ using UnityEngine;
 public class FaceInput : MonoBehaviour
 {
     public FacePart facePart;
-    // Start is called before the first frame update
 
-    SpriteRenderer spriteRenderer;
+    //State machine responsible for showing the hover sprite / flashing over time.
+    public FaceBlinker faceBlinker;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     void OnMouseEnter()
     {
         GameManager.instance.mouseHoveredFacePart = facePart;
 
-        if (spriteRenderer != null)
+        if (faceBlinker != null)
         {
-            spriteRenderer.color = new Color( .7f, .7f, .7f, 1);
+            faceBlinker.setHover(true);
+        }
+    }
+
+    void OnMouseOver()
+    {
+        GameManager.instance.mouseHoveredFacePart = facePart;
+
+        if (faceBlinker != null)
+        {
+            faceBlinker.setHover(true);
         }
     }
 
@@ -28,9 +38,9 @@ public class FaceInput : MonoBehaviour
     {
         GameManager.instance.mouseHoveredFacePart = FacePart.None;
 
-        if (spriteRenderer != null)
+        if (faceBlinker != null)
         {
-            spriteRenderer.color = Color.white;
+            faceBlinker.setHover(false);
         }
     }
 }
