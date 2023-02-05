@@ -24,6 +24,7 @@ public enum ToolType
     MERCURY,
     POWDEREDMUMMY,
     WITCHROOT,
+    HAMMER,
     None
 };
 
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
     public OnToolAppliedOnFace onToolAppliedOnFace;
     public FacePart mouseHoveredFacePart;
 
+    public delegate void OnPainLevelChanged(float PainLevel);
+    public OnPainLevelChanged onPainLevelChanged;
+
     public delegate void OnToolHoveredAction(ToolType toolType);
     public OnToolHoveredAction onToolHovered;
     public ToolType toolHovered;
@@ -62,18 +66,17 @@ public class GameManager : MonoBehaviour
     public bool isDragging = false;
 
 
-
     public TextAsset ToolsEffectCSV;
     public Dictionary<ToolType, float[]> ToolsEffectTable;
 
     public Humor humor;
 
-
-
-    public GameObject gameOverPanel;
     public GameObject gameVictoryPanel;
 
 
+    public float painTimerMinRange = 30;
+    public float painTimerMaxRange = 60;
+    public float nextPainTimer = 60;
 
     private void Awake()
     {
@@ -106,8 +109,8 @@ public class GameManager : MonoBehaviour
         humor.YellowBile = 60;
         humor.Blood = 60;
         humor.Phlegm = 60;
+        nextPainTimer = Time.time + nextPainTimer;
     }
-
     public void OnToolHovered(ToolType toolType)
     {
         onToolHovered(toolType);
@@ -169,28 +172,51 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            humor.BlackBile = 5;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            humor.YellowBile = 5;
+            humor.BlackBile = 11;// humor.maxBlackBile;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            humor.Blood = 5;
+            humor.YellowBile = 11;//humor.maxYellowBile;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            humor.Phlegm = 5;
+            humor.Blood = 11;//humor.maxBlood;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            humor.Phlegm = 11;//humor.maxPhlegm;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            onToolAppliedOnFace(ToolType.HAMMER, mouseHoveredFacePart);
+            ResetPainLevelChangeTimer();
+        }
+
+        RandomPainLevelChangeWithTime();
+    }
+    void RandomPainLevelChangeWithTime()
+    {
+        //Check if current system time is greater than nextTime
+        if (Time.time > nextPainTimer)
+        {
+            onPainLevelChanged(1);
+            ResetPainLevelChangeTimer();
         }
     }
+    void ResetPainLevelChangeTimer()
+    {
+        // reset scream timer
+        float modifier = UnityEngine.Random.Range(painTimerMinRange, painTimerMaxRange);
 
+        //Set nextTime equal to current run time plus modifier
+        nextPainTimer = Time.time + modifier;
+    }
     void ParseToolEffectCSV()
     {
         //var dataset = Resources.Load<TextAsset>("box");
