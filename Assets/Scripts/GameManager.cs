@@ -18,7 +18,7 @@ public enum ToolType
     BONESAW, 
     LEECHES,
     SCALPEL, 
-    MAGGOTS,
+    DRILL,
     NIGHTSHADE,
     WINTERGREEN,
     MERCURY,
@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<ToolType, float[]> ToolsEffectTable;
 
     public Humor humor;
+
+
 
     
 

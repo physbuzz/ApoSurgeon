@@ -22,42 +22,6 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private RectTransform m_DraggingPlane;
     private bool m_isDragging=false;
 
-    public void DroppedOnJaw()
-    {
-        switch (toolType)
-        {
-            case ToolType.BONESAW:
-                Debug.Log("Bonesaw dropped on jaw");
-                break;
-            case ToolType.LEECHES:
-                Debug.Log("Leeches dropped on jaw");
-                break;
-            case ToolType.SCALPEL:
-                Debug.Log("Scalpel dropped on jaw");
-                break;
-            case ToolType.MAGGOTS:
-                Debug.Log("Maggots dropped on jaw");
-                break;
-        }
-    }
-    public void DroppedOnFace()
-    {
-        switch (toolType)
-        {
-            case ToolType.BONESAW:
-                Debug.Log("Bonesaw dropped on face");
-                break;
-            case ToolType.LEECHES:
-                Debug.Log("Leeches dropped on face");
-                break;
-            case ToolType.SCALPEL:
-                Debug.Log("Scalpel dropped on face");
-                break;
-            case ToolType.MAGGOTS:
-                Debug.Log("Maggots dropped on face");
-                break;
-        }
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
