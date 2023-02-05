@@ -1,0 +1,9 @@
+﻿ToolType, Blood, YellowBile, BlackBile, Phlegm, ForeHead,Nose,CheekBones,Jaw
+BONESAW,-30,0,0,-10,0,0,0,1
+SCALPEL,0,-10,0,-30,0,0,1,0
+LEECHES,-10,0,-30,0,0,1,0,0
+DRILL,0,-30,-10,0,1,0,0,0
+WINTERGREEN,-20,0,0,20,0,0,0,0
+NIGHTSHADE,0,-20,20,0,0,0,0,0
+MERCURY,0,20,0,-20,0,0,0,0
+POWDEREDMUMMY,20,0,-20,0,0,0,0,0

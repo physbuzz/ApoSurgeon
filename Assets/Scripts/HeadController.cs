@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,8 @@ public class HeadController : MonoBehaviour
         GameManager.instance.onToolAppliedOnFace += HandleToolAppliedOnFace;
     }
 
-    public void HandleToolAppliedOnFace(ToolType toolType, FacePart FacePart)
+    public void HandleToolAppliedOnFace(ToolType toolType, FacePart facePart)
     {
-
+        Debug.Log(toolType.ToString() + " dropped on " + facePart.ToString());
     }
 }

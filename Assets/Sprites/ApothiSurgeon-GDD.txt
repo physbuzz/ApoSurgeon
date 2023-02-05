@@ -1,0 +1,115 @@
+"Playfully gruesome"
+
+Surgery a Hapsburg back to beauty so he can get married and continue on the bloodline. Appearances are everything as long as you don't kill him in the process.
+
+4 humors act as health bars, keep them all above 0 to keep him alive. Add apothecary elements to balance the humors, perform surgery to enhance appearance.
+
+Mercury
++ yellow bile
+- phlegm
+
+Wintergreen
++ phlegm
+- blood
+
+Nightshade
++ black bile
+- yellow bile
+
+Powdered Mummy
++ blood
+- black bile
+
+Humor level ideal is 100%, dies at 0% or 200%
+(start with low, add high if time permits)
+
+Blood
+Under 50%: anemia
+Over 150%: hypertension
+
+Yellow bile
+Under 50%: hepatitis
+Over 150%: gallstones
+
+Black bile
+Under 50%: feverish
+Over 150%: allergies
+
+Phlegm
+Under 50%: pneumonia
+Over 150%: migraines
+
+Bones (bonesaw)
+- ideal
+- weird
+- inbred
+Blood (leeches)
+- ideal
+- weird
+- inbred
+Fat (scalpel)
+- ideal
+- weird
+- inbred
+
+start at inbred, get him to ideal
+
+Apothecary
+- mercury
+- wintergreen
+- nightshade
+- powdered mummy
+- witchroot (RESET/randomize/heal)
+Surgeon
+- Hammer
+- Bloodletting
+- Bonesaw
+- Scalpel
+
+
+ART ASSETS
+Main menu
+- Background
+- Blank Button
+- Music mute/unmute icon
+Icons for each apothecary/surgeon thing
+- mercury
+- wintergreen
+- nightshade
+- powdered mummy
+- witchroot
+- bloodletting
+- bonesaw
+- scalpel
+- hammer (stop procedure/cancel)
+Table to lay on
+Tooltip background (+writing)
+Hapsburg
+- jaw 1
+- jaw 2
+- jaw 3
+- cheeks 1
+- cheeks 2
+- cheeks 3
+- eyes 1
+- eyes 2
+- eyes 3
+- forehead 1
+- forehead 2
+- forehead 3
+- nose 1
+- nose 2
+- nose 3
+Chadsburg painting
+Animations
+- hammer bonk
+- hapsburg idle
+(OPTIONAL) particle effect for getting jaw/cheeks/eyes correct
+
+WRITING
+- tutorial ("get this guy to look like that guy and get money. fail and get guillotined")
+- tooltips
+
+SOUND
+main theme
+(OPTIONAL) sound effect for getting jaw/cheeks/eyes correct

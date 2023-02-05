@@ -89,7 +89,6 @@ public class GameManager : MonoBehaviour
     public void OnToolDragReleased(ToolType toolType)
     {
 
-        Debug.Log(toolType.ToString() + " dropped on "+mouseHoveredFacePart.ToString());
         if (mouseHoveredFacePart == FacePart.None)
         {
             return;
