@@ -1,16 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/* Code from https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.IDragHandler.html */
 [RequireComponent(typeof(Image))]
-public class DraggableSawTest : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool dragOnSurfaces = true;
 
+    public Color hoverColor = new Color(1.0f,1.0f,0.0f);
+    public Color draggingColor = new Color(0.1f,0.1f,0.1f,0.6f);
+
+    public enum ToolType { BONESAW, LEECHES, SCALPEL, MAGGOTS };
+    public ToolType toolType;
+
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
+    private bool m_isDragging=false;
+
+    public void DroppedOnJaw()
+    {
+        switch (toolType)
+        {
+            case ToolType.BONESAW:
+                Debug.Log("Bonesaw dropped on jaw");
+                break;
+            case ToolType.LEECHES:
+                Debug.Log("Leeches dropped on jaw");
+                break;
+            case ToolType.SCALPEL:
+                Debug.Log("Scalpel dropped on jaw");
+                break;
+            case ToolType.MAGGOTS:
+                Debug.Log("Maggots dropped on jaw");
+                break;
+        }
+    }
+    public void DroppedOnFace()
+    {
+        switch (toolType)
+        {
+            case ToolType.BONESAW:
+                Debug.Log("Bonesaw dropped on face");
+                break;
+            case ToolType.LEECHES:
+                Debug.Log("Leeches dropped on face");
+                break;
+            case ToolType.SCALPEL:
+                Debug.Log("Scalpel dropped on face");
+                break;
+            case ToolType.MAGGOTS:
+                Debug.Log("Maggots dropped on face");
+                break;
+        }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -18,8 +64,13 @@ public class DraggableSawTest : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         if (canvas == null)
             return;
 
+        m_isDragging = true;
+
         // We have clicked something that can be dragged.
         // What we want to do is create an icon for this.
+
+        GetComponent<SpriteRenderer>().color = draggingColor;
+
         m_DraggingIcon = new GameObject("icon");
 
         m_DraggingIcon.transform.SetParent(canvas.transform, false);
@@ -62,6 +113,9 @@ public class DraggableSawTest : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
+        GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+        m_isDragging = false;
+            
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component
@@ -79,5 +133,17 @@ public class DraggableSawTest : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             t = t.parent;
         }
         return comp;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(!m_isDragging)
+            GetComponent<SpriteRenderer>().color = hoverColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!m_isDragging)
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
     }
 }
