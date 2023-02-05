@@ -2714,6 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseHoveredFacePart: 0
+  ToolsEffectCSV: {fileID: 4900000, guid: 1e0815b0a14e4f54d8ebfe5e8beb831e, type: 3}
   humor: {fileID: 0}
 --- !u!4 &784403006
 Transform:
