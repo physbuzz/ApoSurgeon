@@ -80,7 +80,9 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         var image = m_DraggingIcon.AddComponent<Image>();
 
         image.sprite = GetComponent<Image>().sprite;
-        image.SetNativeSize();
+        //image.SetNativeSize();
+        //TODO: right now the image aspect ratio is messed up on drag.
+        //Fix it here.
 
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
@@ -116,7 +118,6 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Destroy(m_DraggingIcon);
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         m_isDragging = false;
-
 
         GameManager.instance.OnToolDragReleased(toolType);
     }

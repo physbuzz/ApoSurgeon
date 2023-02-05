@@ -28,15 +28,23 @@ public class DraggableApo : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             case ApoType.MERCURY:
                 Debug.Log("Mercury dropped on face");
+                GameManager.instance.humor.YellowBile += 20;
+                GameManager.instance.humor.Phlegm -= 20;
                 break;
             case ApoType.WINTERGREEN:
                 Debug.Log("Wintergreen dropped on face");
+                GameManager.instance.humor.Phlegm += 20;
+                GameManager.instance.humor.Blood -= 20;
                 break;
             case ApoType.NIGHTSHADE:
                 Debug.Log("Nightshade dropped on face");
+                GameManager.instance.humor.BlackBile += 20;
+                GameManager.instance.humor.YellowBile -= 20;
                 break;
             case ApoType.MUMMY:
                 Debug.Log("Mummy dropped on face");
+                GameManager.instance.humor.Blood += 20;
+                GameManager.instance.humor.BlackBile -= 20;
                 break;
         }
     }
@@ -101,7 +109,9 @@ public class DraggableApo : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Destroy(m_DraggingIcon);
         GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
         m_isDragging = false;
-            
+        DroppedOnFace();
+
+
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component
