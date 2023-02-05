@@ -54,6 +54,7 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             m_DraggingPlane = canvas.transform as RectTransform;
 
         SetDraggedPosition(eventData);
+        GameManager.instance.isDragging = true;
     }
 
     public void OnDrag(PointerEventData data)
@@ -84,6 +85,7 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         m_isDragging = false;
 
         GameManager.instance.OnToolDragReleased(toolType);
+        GameManager.instance.isDragging= false;
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component
@@ -107,11 +109,16 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if(!m_isDragging)
             GetComponent<SpriteRenderer>().color = hoverColor;
+
+        GameManager.instance.toolHovered = toolType;
+        GameManager.instance.OnToolHovered(toolType);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!m_isDragging)
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        GameManager.instance.toolHovered = ToolType.None;
+        GameManager.instance.OnToolHovered(ToolType.None);
     }
 }

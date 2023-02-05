@@ -22,7 +22,9 @@ public enum ToolType
     NIGHTSHADE,
     WINTERGREEN,
     MERCURY,
-    POWDEREDMUMMY
+    POWDEREDMUMMY,
+    WITCHROOT,
+    None
 };
 
 public enum ToolEffect 
@@ -51,8 +53,14 @@ public class GameManager : MonoBehaviour
 
     public delegate void OnToolAppliedOnFace(ToolType toolType, FacePart FacePart);
     public OnToolAppliedOnFace onToolAppliedOnFace;
-
     public FacePart mouseHoveredFacePart;
+
+    public delegate void OnToolHoveredAction(ToolType toolType);
+    public OnToolHoveredAction onToolHovered;
+    public ToolType toolHovered;
+
+    public bool isDragging = false;
+
 
 
     public TextAsset ToolsEffectCSV;
@@ -86,6 +94,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnToolHovered(ToolType toolType)
+    {
+        onToolHovered(toolType);
+    }
     public void OnToolDragReleased(ToolType toolType)
     {
 
