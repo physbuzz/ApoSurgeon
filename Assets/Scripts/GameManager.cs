@@ -28,6 +28,12 @@ public enum ToolType
     None
 };
 
+public enum GameState
+{
+    PLAY,
+    GAMEOVER,
+    VICTORY
+}
 public enum ToolEffect 
 { 
     Blood, 
@@ -71,7 +77,12 @@ public class GameManager : MonoBehaviour
 
     public Humor humor;
 
+    public GameState gameState=GameState.PLAY;
+
     public GameObject gameVictoryPanel;
+    public GameObject gameOverPanel;
+
+    public HeadController headController;
 
 
     public float painTimerMinRange = 30;
@@ -98,18 +109,43 @@ public class GameManager : MonoBehaviour
             ToolsEffectTable = new Dictionary<ToolType, float[]>();
             ParseToolEffectCSV();
         }
-
+        onToolAppliedOnFace += WitchrootDelegate;
     }
 
-    private void Start()
+    private void WitchrootDelegate(ToolType toolType, FacePart FacePart)
     {
-
-
+        if (toolType == ToolType.WITCHROOT)
+        {
+            ResetGamestate();
+        }
+    }
+    private void ResetGamestate()
+    {
+        gameState = GameState.PLAY;
+        gameOverPanel.SetActive(false);
+        gameVictoryPanel.SetActive(false);
         humor.BlackBile = 60;
         humor.YellowBile = 60;
         humor.Blood = 60;
         humor.Phlegm = 60;
+    }
+    private void GameOver()
+    {
+        gameState = GameState.GAMEOVER;
+        gameOverPanel.SetActive(true);
+        gameVictoryPanel.SetActive(false);
+    }
+    private void GameWin()
+    {
+        gameState = GameState.VICTORY;
+        gameOverPanel.SetActive(false);
+        gameVictoryPanel.SetActive(true);
+    }
+
+    private void Start()
+    {
         nextPainTimer = Time.time + nextPainTimer;
+        ResetGamestate();
     }
     public void OnToolHovered(ToolType toolType)
     {
@@ -141,16 +177,44 @@ public class GameManager : MonoBehaviour
             switch ((ToolEffect)i)
             {
                 case ToolEffect.Blood:
-                    humor.Blood += valueTable[i];
+                    if (gameState == GameState.PLAY)
+                    {
+                        humor.Blood += valueTable[i];
+                        if (humor.Blood <= 0)
+                        {
+                            GameOver();
+                        }
+                    }
                     break;
                 case ToolEffect.YellowBile:
-                    humor.YellowBile += valueTable[i];
+                    if (gameState == GameState.PLAY)
+                    {
+                        humor.YellowBile += valueTable[i];
+                        if (humor.YellowBile <= 0)
+                        {
+                            GameOver();
+                        }
+                    }
                     break;
                 case ToolEffect.BlackBile:
-                    humor.BlackBile += valueTable[i];
+                    if (gameState == GameState.PLAY)
+                    {
+                        humor.BlackBile += valueTable[i];
+                        if (humor.BlackBile <= 0)
+                        {
+                            GameOver();
+                        }
+                    }
                     break;
                 case ToolEffect.Phlegm:
-                    humor.Phlegm += valueTable[i];
+                    if (gameState == GameState.PLAY)
+                    {
+                        humor.Phlegm += valueTable[i];
+                        if (humor.Phlegm <= 0)
+                        {
+                            GameOver();
+                        }
+                    }
                     break;
                 case ToolEffect.ForeHead:
 
