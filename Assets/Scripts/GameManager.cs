@@ -70,7 +70,10 @@ public class GameManager : MonoBehaviour
 
 
 
-    
+    public GameObject gameOverPanel;
+    public GameObject gameVictoryPanel;
+
+
 
     private void Awake()
     {
@@ -92,6 +95,17 @@ public class GameManager : MonoBehaviour
             ToolsEffectTable = new Dictionary<ToolType, float[]>();
             ParseToolEffectCSV();
         }
+
+    }
+
+    private void Start()
+    {
+
+
+        humor.BlackBile = 60;
+        humor.YellowBile = 60;
+        humor.Blood = 60;
+        humor.Phlegm = 60;
     }
 
     public void OnToolHovered(ToolType toolType)

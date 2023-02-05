@@ -11,6 +11,13 @@ public class HUDController : MonoBehaviour
     public GameObject blackBileGameObject;
     public GameObject phlegmGameObject;
 
+
+
+    public HumorIndividual bloodSprite;
+    public HumorIndividual yellowSprite;
+    public HumorIndividual blackSprite;
+    public HumorIndividual phlegmSprite;
+
     private Slider bloodBar;
     private Slider yellowBileBar;
     private Slider blackBileBar;
@@ -47,6 +54,7 @@ public class HUDController : MonoBehaviour
         }
 
         bloodBar.value = value;
+        bloodSprite.Level = value;
     }
     void HandlePhlegmValueChanged(float value)
     {
@@ -56,6 +64,7 @@ public class HUDController : MonoBehaviour
         }
 
         phlegmBar.value = value;
+        phlegmSprite.Level = value;
     }
 
     void HandleBlackBileValueChanged(float value)
@@ -65,6 +74,7 @@ public class HUDController : MonoBehaviour
             return;
         }
         blackBileBar.value = value;
+        blackSprite.Level = value;
     }
     void HandleYellowBileValueChanged(float value)
     {
@@ -73,6 +83,7 @@ public class HUDController : MonoBehaviour
             return;
         }
         yellowBileBar.value = value;
+        yellowSprite.Level = value;
     }
 
 }
