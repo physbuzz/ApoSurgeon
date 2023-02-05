@@ -14,7 +14,7 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Color hoverColor = new Color(1.0f,1.0f,0.0f);
     public Color draggingColor = new Color(0.1f,0.1f,0.1f,0.6f);
 
-    public enum ToolType { BONESAW, LEECHES, SCALPEL, MAGGOTS };
+    
     public ToolType toolType;
 
     private GameObject m_DraggingIcon;
@@ -114,9 +114,11 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
-        GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         m_isDragging = false;
-            
+
+
+        GameManager.instance.OnToolDragReleased(toolType);
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component

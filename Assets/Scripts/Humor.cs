@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Humor : MonoBehaviour
 {
-    private int m_blood;
+    public float maxBlood = 100;
+    public float maxYellowBile = 100;
+    public float maxBlackBile = 100;
+    public float maxPhlegm = 100;
+
+    private float m_blood;
     private float m_yellowBile;
     private float m_blackBile;
     private float m_phlegm;
-    public int Blood
+    public float Blood
     {
         get { return m_blood; }
         set
         {
             m_blood = value;
-            GameManager.instance.onHumorBloodValueChanged(m_blood);
+            GameManager.instance.onBloodValueChanged(NormalizedClamp(m_blood, maxBlood));
         }
     }
 
@@ -24,6 +29,7 @@ public class Humor : MonoBehaviour
         set
         {
             m_blackBile = value;
+            GameManager.instance.onBlackBileValueChanged(NormalizedClamp(m_blackBile, maxBlackBile));
         }
     }
 
@@ -33,6 +39,7 @@ public class Humor : MonoBehaviour
         set
         {
             m_yellowBile = value;
+            GameManager.instance.onYellowBileValueChanged(NormalizedClamp(m_yellowBile, maxYellowBile));
         }
     }
 
@@ -42,6 +49,7 @@ public class Humor : MonoBehaviour
         set
         {
             m_phlegm = value;
+            GameManager.instance.onPhlegmValueChanged(NormalizedClamp(m_phlegm, maxPhlegm));
         }
     }
    
@@ -52,5 +60,8 @@ public class Humor : MonoBehaviour
         
     }
 
-
+    float NormalizedClamp(float value, float max)
+    {
+        return Mathf.Clamp01(value / max);
+    }    
 }
