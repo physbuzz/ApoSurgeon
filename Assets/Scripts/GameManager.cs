@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
     }
     private void ResetGamestate()
     {
-        gameState = GameState.STARTING;
+        gameState = GameState.PLAY;
         gameOverPanel.SetActive(false);
         gameVictoryPanel.SetActive(false);
         humor.BlackBile = 80;
@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
     {
         nextPainTimer = Time.time + nextPainTimer;
         ResetGamestate();
+        gameState = GameState.STARTING;
     }
     public void OnToolHovered(ToolType toolType)
     {
