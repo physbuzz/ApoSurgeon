@@ -21,7 +21,8 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     private RectTransform m_DraggingPlane;
     private bool m_isDragging=false;
-
+    public AnimationClip appliedAnimationClip;
+    Animation appliedAnimation;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -44,11 +45,17 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         var image = m_DraggingIcon.AddComponent<Image>();
 
         image.sprite = GetComponent<Image>().sprite;
-        //image.SetNativeSize();
-        //TODO: right now the image aspect ratio is messed up on drag.
-        //Fix it here.
 
-        if (dragOnSurfaces)
+        if (toolType == ToolType.HAMMER)
+        {
+            appliedAnimation = m_DraggingIcon.AddComponent<Animation>();
+            appliedAnimation.AddClip(appliedAnimationClip, "bonk");
+        }
+            //image.SetNativeSize();
+            //TODO: right now the image aspect ratio is messed up on drag.
+            //Fix it here.
+
+            if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
         else
             m_DraggingPlane = canvas.transform as RectTransform;
@@ -86,6 +93,11 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         GameManager.instance.OnToolDragReleased(toolType);
         GameManager.instance.isDragging= false;
+
+        if (toolType == ToolType.HAMMER && appliedAnimation)
+        {
+            appliedAnimation.Play("bonk");
+        }
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component
