@@ -115,6 +115,14 @@ public class GameManager : MonoBehaviour
         onToolAppliedOnFace(toolType, mouseHoveredFacePart);
 
         float[] valueTable;
+     
+
+        if (toolType == ToolType.HAMMER)
+        {
+            ResetPainLevelChangeTimer();
+            return;
+        }
+
         if (ToolsEffectTable.TryGetValue(toolType, out valueTable) == false)
         {
             return;
