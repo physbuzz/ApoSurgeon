@@ -20,10 +20,10 @@ public class TooltipScript : MonoBehaviour
         tooltiptext.Add(ToolType.NIGHTSHADE, "Nightshade (+black bile, -yellow bile): Its flowers, as dark as night, hold a potent and mysterious essence that calms overactive energies while stirring the stagnant ones.");
         tooltiptext.Add(ToolType.POWDEREDMUMMY, "Powdered Mummy (+blood, -black bile): A fine dust, made from the bones of a blessed man, that can grant life-giving energy and banish any dark spirits within.");
         tooltiptext.Add(ToolType.WITCHROOT, "Witchroot (reset): A mysterious root, unknown in origin. How its restorative properties can rejuvenate the body and mind is still a mystery.");
-        tooltiptext.Add(ToolType.BONESAW, "Bonesaw (Sculpting): A keen edge that, in the hands of a skilled practitioner, can reshape bone.");
+        tooltiptext.Add(ToolType.BONESAW, "Bonesaw (Jaw): A keen edge that, in the hands of a skilled practitioner, can reshape bone.");
         tooltiptext.Add(ToolType.DRILL, "Drill (Forehead): An articulate tool capable of excavating material from the forehead of a victim or patient.");
-        tooltiptext.Add(ToolType.LEECHES, "Leeches (Bloodletting): Tiny creatures that cleanse the body of any ailments and impurities.");
-        tooltiptext.Add(ToolType.SCALPEL, "Scalpel (Skin/Fat): A new innovative tool that cleanly slices through the delicate layers of skin and fat.");
+        tooltiptext.Add(ToolType.LEECHES, "Leeches (Nose): Tiny creatures that cleanse the body of any ailments and impurities.");
+        tooltiptext.Add(ToolType.SCALPEL, "Scalpel (Cheeks): A new innovative tool that cleanly slices through the delicate layers of skin and fat.");
         tooltiptext.Add(ToolType.None, "");
     }
     void Start()
@@ -47,7 +47,7 @@ public class TooltipScript : MonoBehaviour
                     textcontent.text = FaceHoveredString(FacePart.Nose, GameManager.instance.headController.noseBeauty);
                     break;
                 case FacePart.Jaw:
-                    textcontent.text = FaceHoveredString(FacePart.Jaw, GameManager.instance.headController.chinBeauty);
+                    textcontent.text = FaceHoveredString(FacePart.Jaw, GameManager.instance.headController.jawBeauty);
                     break;
                 case FacePart.Cheek:
                     textcontent.text = FaceHoveredString(FacePart.Cheek, GameManager.instance.headController.cheekBeauty);
