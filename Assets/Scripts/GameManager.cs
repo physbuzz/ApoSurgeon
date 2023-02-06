@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameVictoryPanel;
     public GameObject gameOverPanel;
+    public TooltipScript tooltipScript;
 
     public HeadController headController;
 

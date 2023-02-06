@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,9 +31,54 @@ public class TooltipScript : MonoBehaviour
         GameManager.instance.onToolHovered += HandleToolHovered;
     }
 
+    private void Update()
+    {
+        if (!GameManager.instance.isDragging && GameManager.instance.mouseHoveredFacePart != FacePart.None)
+        {
+            switch(GameManager.instance.mouseHoveredFacePart)
+            {
+                case FacePart.None:
+                    Debug.Log("what");
+                    break;
+                case FacePart.ForeHead:
+                    textcontent.text = FaceHoveredString(FacePart.ForeHead, GameManager.instance.headController.foreheadBeauty);
+                    break;
+                case FacePart.Nose:
+                    textcontent.text = FaceHoveredString(FacePart.Nose, GameManager.instance.headController.noseBeauty);
+                    break;
+                case FacePart.Jaw:
+                    textcontent.text = FaceHoveredString(FacePart.Jaw, GameManager.instance.headController.chinBeauty);
+                    break;
+                case FacePart.Cheek:
+                    textcontent.text = FaceHoveredString(FacePart.Cheek, GameManager.instance.headController.cheekBeauty);
+                    break;
+            }
+        }
+    }
+
     public void HandleToolHovered(ToolType toolType)
     {
         textcontent.text= tooltiptext[toolType];
+    }
+    public string FaceHoveredString(FacePart facePart, int value)
+    {
+        string descriptor;
+        switch(value)
+        {
+            case 0:
+                descriptor = "Horrible";
+                break;
+            case 1:
+                descriptor = "Weird";
+                break;
+            case 2:
+                descriptor = "Handsdome";
+                break;
+            default:
+                descriptor = "Descriptor missing";
+                break;
+        }
+        return facePart.ToString() + " description: " + descriptor;
     }
 
 }
