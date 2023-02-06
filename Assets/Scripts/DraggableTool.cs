@@ -49,7 +49,7 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (toolType == ToolType.HAMMER)
         {
             appliedAnimation = m_DraggingIcon.AddComponent<Animation>();
-            appliedAnimation.AddClip(appliedAnimationClip, "bonk");
+            //appliedAnimation.AddClip(appliedAnimationClip, "bonk");
         }
             //image.SetNativeSize();
             //TODO: right now the image aspect ratio is messed up on drag.
@@ -96,7 +96,7 @@ public class DraggableTool : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         if (toolType == ToolType.HAMMER && appliedAnimation)
         {
-            appliedAnimation.Play("bonk");
+            //appliedAnimation.Play("bonk");
         }
     }
 

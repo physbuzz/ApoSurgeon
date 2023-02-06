@@ -30,8 +30,9 @@ public class FaceBlinker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         t += Time.deltaTime;
-        if (isHovered)
+        if (isHovered && GameManager.instance.gameState!=GameState.STARTING)
         {
             GetComponent<SpriteRenderer>().color = Color.Lerp(
                     GetComponent<SpriteRenderer>().color,

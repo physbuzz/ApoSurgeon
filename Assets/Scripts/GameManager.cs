@@ -30,6 +30,7 @@ public enum ToolType
 
 public enum GameState
 {
+    STARTING,
     PLAY,
     GAMEOVER,
     VICTORY
@@ -122,13 +123,13 @@ public class GameManager : MonoBehaviour
     }
     private void ResetGamestate()
     {
-        gameState = GameState.PLAY;
+        gameState = GameState.STARTING;
         gameOverPanel.SetActive(false);
         gameVictoryPanel.SetActive(false);
-        humor.BlackBile = 60;
-        humor.YellowBile = 60;
-        humor.Blood = 60;
-        humor.Phlegm = 60;
+        humor.BlackBile = 80;
+        humor.YellowBile = 80;
+        humor.Blood = 80;
+        humor.Phlegm = 80;
         headController.Reset();
     }
     private void GameOver()
@@ -176,6 +177,8 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+
 
         for (int i = 0; i < valueTable.Length; ++i)
         {

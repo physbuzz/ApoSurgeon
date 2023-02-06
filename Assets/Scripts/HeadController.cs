@@ -9,6 +9,8 @@ public class HeadController : MonoBehaviour
 
     public GameObject[] faces;
 
+
+
     public int cheekBeauty = 0;
     public int jawBeauty = 0;
     public int foreheadBeauty = 0;

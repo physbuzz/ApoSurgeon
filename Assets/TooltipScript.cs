@@ -10,6 +10,8 @@ public class TooltipScript : MonoBehaviour
 {
     private Dictionary<ToolType, string> tooltiptext = new Dictionary<ToolType, string>();
 
+    public GameObject[] markers;
+
     // Start is called before the first frame update
     public Text textcontent;
     private void Awake()
@@ -24,11 +26,26 @@ public class TooltipScript : MonoBehaviour
         tooltiptext.Add(ToolType.DRILL, "Drill (Forehead): An articulate tool capable of excavating material from the forehead of a victim or patient.");
         tooltiptext.Add(ToolType.LEECHES, "Leeches (Nose): Tiny creatures that cleanse the body of any ailments and impurities.");
         tooltiptext.Add(ToolType.SCALPEL, "Scalpel (Cheeks): A new innovative tool that cleanly slices through the delicate layers of skin and fat.");
+        tooltiptext.Add(ToolType.HAMMER, "Hammer (Anesthetic): An articulate tool capable of dulling physical pain in times of great duress.");
         tooltiptext.Add(ToolType.None, "");
     }
     void Start()
     {
         GameManager.instance.onToolHovered += HandleToolHovered;
+    }
+
+    private void setMarkerActive(int n)
+    {
+        if (markers.Length == 3)
+        {
+            markers[0].SetActive(false);
+            markers[1].SetActive(false);
+            markers[2].SetActive(false);
+            if (0 <= n && n <= 2)
+            {
+                markers[n].SetActive(true);
+            }
+        }
     }
 
     private void Update()
@@ -42,15 +59,20 @@ public class TooltipScript : MonoBehaviour
                     break;
                 case FacePart.ForeHead:
                     textcontent.text = FaceHoveredString(FacePart.ForeHead, GameManager.instance.headController.foreheadBeauty);
+                    setMarkerActive(GameManager.instance.headController.foreheadBeauty);
+
                     break;
                 case FacePart.Nose:
                     textcontent.text = FaceHoveredString(FacePart.Nose, GameManager.instance.headController.noseBeauty);
+                    setMarkerActive(GameManager.instance.headController.noseBeauty);
                     break;
                 case FacePart.Jaw:
                     textcontent.text = FaceHoveredString(FacePart.Jaw, GameManager.instance.headController.jawBeauty);
+                    setMarkerActive(GameManager.instance.headController.jawBeauty);
                     break;
                 case FacePart.Cheek:
                     textcontent.text = FaceHoveredString(FacePart.Cheek, GameManager.instance.headController.cheekBeauty);
+                    setMarkerActive(GameManager.instance.headController.cheekBeauty);
                     break;
             }
         }
@@ -59,6 +81,8 @@ public class TooltipScript : MonoBehaviour
     public void HandleToolHovered(ToolType toolType)
     {
         textcontent.text= tooltiptext[toolType];
+
+        setMarkerActive(-1);
     }
     public string FaceHoveredString(FacePart facePart, int value)
     {
