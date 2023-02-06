@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         humor.YellowBile = 60;
         humor.Blood = 60;
         humor.Phlegm = 60;
+        headController.Reset();
     }
     private void GameOver()
     {
@@ -136,7 +137,7 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         gameVictoryPanel.SetActive(false);
     }
-    private void GameWin()
+    public void GameWin()
     {
         gameState = GameState.VICTORY;
         gameOverPanel.SetActive(false);
