@@ -10,23 +10,23 @@ public class HumorIndividual : MonoBehaviour
     public Sprite halfSprite;
     public Sprite fullSprite;
 
-    private float m_level=100.0f;
+    private float m_level=1.0f;
     public float Level
     {
         get { return m_level; }
         set
         {
             m_level = value;
-
+            UpdateImage();
         }
     }
     public void UpdateImage()
     {
-        if (m_level < 100f / 3)
+        if (m_level < 1f / 3)
         {
             GetComponent<SpriteRenderer>().sprite = emptySprite;
         } 
-        else if (m_level < 200f / 3)
+        else if (m_level < 2f / 3)
         {
             GetComponent<SpriteRenderer>().sprite = halfSprite;
         } 
